@@ -70,7 +70,7 @@ func BuildPikPakData(mountPath string, pikPakUrl string, config *models.Config) 
 		log.Fatal(err)
 	}
 
-	var sharePwd, shareFolder string
+	var sharePwd, shareFolder, platform string
 	if params.Query().Has("pwd") {
 		sharePwd = params.Query()["pwd"][0]
 	} else {
@@ -83,6 +83,11 @@ func BuildPikPakData(mountPath string, pikPakUrl string, config *models.Config) 
 	} else {
 		shareFolder = pathArray[3]
 	}
+	if params.Query().Has("platform") {
+		platform = params.Query()["platform"][0]
+	} else {
+		platform = "web"
+	}
 
 	addition := models.PikPakAddition{
 		RootFolderId:   shareFolder,
@@ -92,6 +97,7 @@ func BuildPikPakData(mountPath string, pikPakUrl string, config *models.Config) 
 		SharePwd:       sharePwd,
 		OrderBy:        "",
 		OrderDirection: "",
+		Platform: 	platform,
 	}
 	additionJson, _ := json.Marshal(addition)
 	additionData := string(additionJson)
