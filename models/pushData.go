@@ -50,6 +50,7 @@ type PikPakAddition struct {
 	SharePwd       string `json:"share_pwd"`
 	OrderBy        string `json:"order_by"`
 	OrderDirection string `json:"order_direction"`
+	Platform       string `json:"platform"`
 }
 
 type OnedriveAppAddition struct {
